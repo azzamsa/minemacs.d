@@ -139,7 +139,21 @@
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
   ;;work with projectile
-  (setq projectile-switch-project-action 'neotree-projectile-action))
+  (setq projectile-switch-project-action 'neotree-projectile-action)
+  (setq neo-hidden-regexp-list
+        '(;; vcs folders
+          "^\\.\\(?:git\\|hg\\|svn\\)$"
+          ;; compiled files
+          "\\.\\(?:pyc\\|o\\|elc\\|lock\\|css.map\\|class\\)$"
+          ;; generated files, caches or local pkgs
+          ;; `cdata': container data
+          ;; `target': rust generated directory
+          "^\\(?:node_modules\\|target\\|cdata\\|vendor\\|.\\(project\\|cask\\|yardoc\\|sass-cache\\)\\)$"
+          ;; org-mode folders
+          "^\\.\\(?:sync\\|export\\|attach\\)$"
+          ;; temp files
+          "~$"
+          "^#.*#$")))
 
 ;;; :tools magit
 (with-eval-after-load 'magit
