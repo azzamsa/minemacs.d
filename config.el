@@ -15,12 +15,12 @@
 (global-auto-revert-mode t)
 ;; Sort by modified time
 (setq dired-listing-switches "-alhFt")
-;; Ranger doesn't pickup `dired-listing-switches'
+;; Ranger doesn't pick up `dired-listing-switches'
 (setq ranger-listing-switches "-althFt")
-;; Both doesn't work in Ranger. I need to set the sorting
+;; Both don't work in Ranger. I need to set the sorting
 ;; manually and make it persists.
 (setq ranger-persistent-sort t)
-;; Delete files to trash , as an extra layer of precaution against
+;; Delete files to trash, as an extra layer of precaution against
 ;; accidentally deleting wanted files.
 (setq delete-by-moving-to-trash t)
 
@@ -42,7 +42,7 @@
 
 ;;
 ;; Why <current theme name>?
-;; - Unlike `doom-dracula', `catpuccin-*' doesn't have noticable region color during evil multi-cursor
+;; - Unlike `doom-dracula', `catpuccin-*' doesn't have noticeable region color during evil multi-cursor
 (setq minemacs-theme 'doom-dracula)
 ;; Why <current font name>?
 ;; - `VictorMono Nerd Font' is too thin
@@ -79,7 +79,7 @@
  (display-time-mode -1))
 
 ;;
-;; Bring back favourite Doom's beahiour
+;; Bring back favorite Doom's behavior
 ;;
 
 ;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el
@@ -105,9 +105,9 @@
 ;; Adopt MinEmacs default
 ;;
 
-;; SPC w o: delete other window
+;; SPC w o: delete other windows
 ;; SCP /: search in project => SPC s s
-;; SPC SPC: find file in project => SPC f f
+;; SPC SPC: find a file in project => SPC f f
 
 ;;
 ;; Modules
@@ -118,7 +118,7 @@
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
 
-;; It is 21st century, should I save file manually?
+;; It is the 21st century, should I save file manually?
 (use-package super-save
   :straight t
   :defer 3
@@ -154,7 +154,7 @@
   :straight t
   :after web-mode
   :config
-  ;; lsp-mode doen't khow what is njk producing `Unable to calculate the languageId for buffer …'
+  ;; LSP-mode doesn't know what is njk producing `Unable to calculate the languageId for buffer …'
   (add-to-list 'lsp-language-id-configuration '(".*\\.njk$" . "html")))
 
  ;;; :tools lsp
@@ -193,12 +193,9 @@
 ;; Misc
 ;;
 
-;; If you installed Emacs from source, you can add the source code
+;; If you installed Emacs from the source, you can add the source code
 ;; directory to enable jumping to symbols defined in Emacs' C code.
 (setq source-directory "~/opt/emacs/")
-
-;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
-(setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
 
 ;;
 ;; My tools
@@ -213,12 +210,12 @@
   "Open current directory with default file manager"
   (interactive)
   (message "Opening file manager in current directory...")
-  ;; `xdg-open' will pick default file manager
+  ;; `xdg-open' will pick the default file manager
   (start-process "" nil "flatpak-spawn" "--host" "xdg-open" "."))
 
 ;;;###autoload
 (defun terminal-here ()
-  "Open a new terminal with current directory as PWD"
+  "Open a new terminal with the current directory as PWD"
   (interactive)
   (message "Opening terminal in %s" default-directory)
   ;; Need to use `expand-file-name` to expand `~` into a full path
