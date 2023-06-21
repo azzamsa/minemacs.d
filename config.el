@@ -199,6 +199,10 @@
 ;; My tools
 ;;
 
+(use-package aza-scripts
+  :defer t
+  :straight (scripts :local-repo "~/projects/aza-scripts/"))
+
 ;;;###autoload
 (defun file-manager-here ()
   "Open current directory with default file manager"
