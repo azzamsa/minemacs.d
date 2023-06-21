@@ -96,10 +96,24 @@
 ;; I don't think it is possible. The code is too complex. It needs to know every possible language mode
 
 ;; SPC RET: bookmark-jump
-(with-eval-after-load 'consult
+(with-eval-after-load 'me-general-ready
   (+map!
     "RET" #'consult-bookmark
     ))
+
+;; SPC /: project search
+(with-eval-after-load 'me-completion
+  (+map!
+    "/"  #'consult-ripgrep
+    ))
+
+;; SPC SPC: find file in project
+(with-eval-after-load 'me-keybindings
+  (+map!
+    "SPC"  #'project-find-file
+    ))
+
+;; highlight yanked line
 
 ;;
 ;; Adopt MinEmacs default
@@ -118,6 +132,12 @@
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
 
+;; Load environments variables.
+;; Need to set manually, because using `exec-path-from-shell' doesn't work
+
+(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/.local/share/cargo/bin")))
+(setq exec-path (append exec-path (list (expand-file-name "~/.local/share/cargo/bin"))))
+
 ;; It is the 21st century, should I save file manually?
 (use-package super-save
   :straight t
@@ -131,6 +151,8 @@
   (super-save-mode +1))
 
 (use-package all-the-icons :straight t)
+
+;; reference: https://github.com/doomemacs/doomemacs/blob/master/modules/ui/neotree/config.el
 (use-package neotree
   :straight t
   :init
