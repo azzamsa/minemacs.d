@@ -30,7 +30,5 @@
         me-files         ; Files and directories (dirvish, treemacs, vlf, ...)
         me-window))      ; Frame & window tweaks
 
-;; You can set `minemacs-disabled-packages' to disable some packages. For
-;; example, if you want to use the `me-ui' module, but you want to disable the
-;; `focus' package. You can use:
-(push 'focus minemacs-disabled-packages)
+;; You can set `minemacs-disabled-packages' to disable some packages.
+(push 'treemacs minemacs-disabled-packages)

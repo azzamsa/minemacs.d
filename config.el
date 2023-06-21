@@ -98,16 +98,13 @@
 (use-package all-the-icons :straight t)
 (use-package neotree
   :straight t
-  ;; :bind ("o p" . neotree-toggle)
+  :init
+  (+map! "op" '(neotree-toggle :wk "Side panel"))
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
   ;;work with projectile
   (setq projectile-switch-project-action 'neotree-projectile-action))
-
-(with-eval-after-load 'treemacs
-  (add-to-list 'treemacs-litter-directories '("target"))
-  (setq treemacs-workspace-switch-cleanup t))
 
 ;;; :tools magit
 (with-eval-after-load 'magit
