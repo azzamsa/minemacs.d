@@ -156,7 +156,7 @@
 (use-package neotree
   :straight t
   :init
-  (+map! "op" '(neotree-toggle :wk "Side panel"))
+  (+map! "op" '(neotree-project-dir :wk "Side panel"))
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
@@ -176,6 +176,19 @@
           ;; temp files
           "~$"
           "^#.*#$")))
+
+(defun neotree-project-dir ()
+  "Always open NeoTree in project root."
+  (interactive)
+  (let ((project-dir (project-root (project-current)))
+        (file-name (buffer-file-name)))
+    (neotree-toggle)
+    (if project-dir
+        (if (neo-global--window-exists-p)
+            (progn
+              (neotree-dir project-dir)
+              (neotree-find file-name)))
+      (message "Could not find project root."))))
 
 ;;; :tools magit
 (with-eval-after-load 'magit
