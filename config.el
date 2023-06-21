@@ -1,7 +1,11 @@
 ;;; config.el -*- lexical-binding: t; -*-
 
+;;
 ;; Personal info
+;;
+
 (setq user-full-name "azzamsa"
+      ;; prevent search engines from indexing the user's email address
       user-mail-address (concat "vcs" "@" "azzamsa" "." "com"))
 ;;
 ;; Better defaults
@@ -43,9 +47,9 @@
 ;; Why <current font name>?
 ;; - `VictorMono Nerd Font' is too thin
 (setq minemacs-fonts'(:font-family "Iosevka Nerd Font"
-   :font-size 18
-   :variable-pitch-font-family "Iosevka Nerd Font"
-   :variable-pitch-font-size 18))
+                                   :font-size 18
+                                   :variable-pitch-font-family "Iosevka Nerd Font"
+                                   :variable-pitch-font-size 18))
 
 ;;
 ;; Buit-in
@@ -63,7 +67,7 @@
   :init
   (setq-default abbrev-mode t)
   :config
-  ;; (setq abbrev-file-name (concat doom-user-dir "abbrevs.el"))
+  (setq abbrev-file-name (concat minemacs-root-dir "abbrevs.el"))
   (setq save-abbrevs 'silently))
 
 ;;
@@ -72,7 +76,33 @@
 
 (+deferred!
  (display-battery-mode -1)
-  (display-time-mode -1))
+ (display-time-mode -1))
+
+;;
+;; Bring back favourite Doom's beahiour
+;;
+
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el
+(use-package drag-stuff
+  :straight t
+  :defer t
+  :bind (("<M-up>"   . 'drag-stuff-up)
+         ("<M-down>"  . 'drag-stuff-down)
+         ("<M-left>"  . 'drag-stuff-left)
+         ("<M-right>" . 'drag-stuff-right)))
+
+;; auto comment next line
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el#L3
+
+;; SPC RET: bookmark-jump
+
+;;
+;; Adopt MinEmacs default
+;;
+
+;; SPC w o: delete other window
+;; SCP /: search in project => SPC s s
+;; SPC SPC: find file in project => SPC f f
 
 ;;
 ;; Modules
@@ -115,12 +145,12 @@
   :defer t
   :mode "\\.njk\\'")
 
-;; (use-package lsp-tailwindcss
-;;   :straight t
-;;   :after web-mode
-;;   :config
-;;   ;; lsp-mode doen't khow what is njk producing `Unable to calculate the languageId for buffer …'
-;;   (add-to-list 'lsp-language-id-configuration '(".*\\.njk$" . "html")))
+(use-package lsp-tailwindcss
+  :straight t
+  :after web-mode
+  :config
+  ;; lsp-mode doen't khow what is njk producing `Unable to calculate the languageId for buffer …'
+  (add-to-list 'lsp-language-id-configuration '(".*\\.njk$" . "html")))
 
  ;;; :tools lsp
 (+deferred!
@@ -150,12 +180,10 @@
 
 (use-package pest-mode :straight t :defer t)
 
-;; (use-package hurl-mode :pin "b5e7256" :recipe
-;;   :straight t
-;;   (:host github
-;;    :repo "Orange-OpenSource/hurl"
-;;    :files ("contrib/emacs/*.el")))
-
+(use-package hurl-mode
+  :straight (hurl-mode
+             :pin "b5e7256"
+             :host github :repo "Orange-OpenSource/hurl" :files ("contrib/emacs/*.el")))
 ;;
 ;; Misc
 ;;
@@ -166,3 +194,27 @@
 
 ;; I use Brave, and never use Chrome, so I replace chrome program with "brave"
 (setq browse-url-chrome-program (or (executable-find "brave") (executable-find "chromium")))
+
+;;
+;; My tools
+;;
+
+;;;###autoload
+(defun file-manager-here ()
+  "Open current directory with default file manager"
+  (interactive)
+  (message "Opening file manager in current directory...")
+  ;; `xdg-open' will pick default file manager
+  (start-process "" nil "flatpak-spawn" "--host" "xdg-open" "."))
+
+;;;###autoload
+(defun terminal-here ()
+  "Open a new terminal with current directory as PWD"
+  (interactive)
+  (message "Opening terminal in %s" default-directory)
+  ;; Need to use `expand-file-name` to expand `~` into a full path
+  ;; Otherwise, termhere fallback to `$HOME`
+  ;; The Rust version of `termhere' only works with `call-process-shell-command',
+  ;; `async-shell-command', and `shell-command'. But the (b)ash version works
+  ;; out of the box. Including with `start-process'
+  (call-process-shell-command (concat "termhere " (expand-file-name default-directory))))

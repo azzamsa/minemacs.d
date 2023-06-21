@@ -28,6 +28,7 @@
         me-extra         ; Extra features (better-jumper, crux, ...)
         me-natural-langs ; Natural language stuff (spell-fu, go-translate, eglot-ltex, ...)
         me-files         ; Files and directories (dirvish, treemacs, vlf, ...)
+        me-workspaces ; Workspace separation (tabspaces, tab-bar, ...). NOTE: This is a WIP
         me-window))      ; Frame & window tweaks
 
 ;; You can set `minemacs-disabled-packages' to disable some packages.
