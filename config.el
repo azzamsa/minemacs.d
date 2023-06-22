@@ -23,17 +23,19 @@
 ;; Delete files to trash, as an extra layer of precaution against
 ;; accidentally deleting wanted files.
 (setq delete-by-moving-to-trash t)
+;; scratch buffer mode
+(setq initial-major-mode 'text-mode)
 
 ;;
 ;; Keybindings
 ;;
 
 (use-package evil-colemak-basics
+  :after evil
   :demand t
   :straight t
   :init
   (setq evil-colemak-basics-layout-mod `mod-dh)
-  :config
   (global-evil-colemak-basics-mode))
 
 ;;
@@ -73,6 +75,8 @@
 ;;
 ;; Minemacs
 ;;
+
+(setq +scratch-initial-major-mode 'text-mode)
 
 (+deferred!
  (display-battery-mode -1)
