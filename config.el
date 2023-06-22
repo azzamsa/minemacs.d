@@ -147,12 +147,6 @@
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
 
-;; Load environments variables.
-;; Need to set manually, because using `exec-path-from-shell' doesn't work
-
-(setenv "PATH" (concat (getenv "PATH") ":" (expand-file-name "~/.local/share/cargo/bin")))
-(setq exec-path (append exec-path (list (expand-file-name "~/.local/share/cargo/bin"))))
-
 ;; It is the 21st century, should I save file manually?
 (use-package super-save
   :straight t
