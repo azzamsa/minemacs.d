@@ -103,7 +103,10 @@
 (use-package highlight-indent-guides
   :straight t
   :hook ((prog-mode text-mode conf-mode) . highlight-indent-guides-mode)
-  :init (setq highlight-indent-guides-method 'character))
+  :init (setq highlight-indent-guides-method 'character)
+  :config
+  ;; optional. I need it to be brighther
+  (set-face-foreground 'highlight-indent-guides-character-face (face-foreground 'font-lock-comment-face)))
 
 ;; SPC RET: bookmark-jump
 (with-eval-after-load 'me-general-ready
