@@ -31,10 +31,10 @@
 ;;
 
 (use-package evil-colemak-basics
-  :after evil
   :demand t
   :straight t
-  :init
+  :after evil
+  :config
   (setq evil-colemak-basics-layout-mod `mod-dh)
   (global-evil-colemak-basics-mode))
 
