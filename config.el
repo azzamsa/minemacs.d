@@ -121,9 +121,11 @@
     ))
 
 ;; SPC SPC: find file in project
+;; SPC x: persistent scratch buffer
 (with-eval-after-load 'me-keybindings
   (+map!
     "SPC"  #'project-find-file
+    "x" #'+scratch-open-project-scratch-buffer
     ))
 
 ;; highlight yanked line
