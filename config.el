@@ -95,6 +95,12 @@
 ;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el#L3
 ;; I don't think it is possible. The code is too complex. It needs to know every possible language mode
 
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/ui/indent-guides/config.el
+(use-package highlight-indent-guides
+  :straight t
+  :hook ((prog-mode text-mode conf-mode) . highlight-indent-guides-mode)
+  :init (setq highlight-indent-guides-method 'character))
+
 ;; SPC RET: bookmark-jump
 (with-eval-after-load 'me-general-ready
   (+map!
