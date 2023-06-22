@@ -238,7 +238,7 @@
 (with-eval-after-load 'spell-fu
   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
   ;; to enable multi-language spell checking.
-  (+spell-fu-register-dictionaries! "en" "fr"))
+  (+spell-fu-register-dictionaries! "en" "id"))
 
 (use-package just-mode :straight t :defer t)
 
