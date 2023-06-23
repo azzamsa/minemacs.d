@@ -44,7 +44,11 @@
 
 ;;
 ;; Why <current theme name>?
-;; - Unlike `doom-dracula', `catpuccin-*' doesn't have noticeable region color during evil multi-cursor
+;; 1.  `catpuccin-*' has so manny issue I need to fix myself
+;; - [active region almost unnoticable · Issue #112 · catppuccin/emacs](https://github.com/catppuccin/emacs/issues/112)
+;; - [No iedit faces specified (used by evil-multiedit) · Issue #108 · catppuccin/emacs](https://github.com/catppuccin/emacs/issues/108)
+;; doesn't have noticeable region color during evil multi-cursor.
+;;
 (setq minemacs-theme 'doom-dracula)
 ;; Why <current font name>?
 ;; - `VictorMono Nerd Font' is too thin
