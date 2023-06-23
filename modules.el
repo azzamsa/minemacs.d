@@ -33,6 +33,4 @@
         me-window))      ; Frame & window tweaks
 
 ;; You can set `minemacs-disabled-packages' to disable some packages.
-(push 'treemacs minemacs-disabled-packages)
-(push 'tempel-collection minemacs-disabled-packages)
-(push 'goggles minemacs-disabled-packages)
+(push '(tempel-collection treemacs googles) minemacs-disabled-packages)
