@@ -24,7 +24,7 @@
 ;; accidentally deleting wanted files.
 (setq delete-by-moving-to-trash t)
 ;; scratch buffer mode
-(setq initial-major-mode 'text-mode)
+(setq initial-major-mode 'markdown-mode)
 
 ;;
 ;; Keybindings
@@ -75,7 +75,7 @@
 ;; Minemacs
 ;;
 
-(setq +scratch-initial-major-mode 'text-mode)
+(setq +scratch-initial-major-mode 'markdown-mode)
 
 (+deferred!
  (display-battery-mode -1)
