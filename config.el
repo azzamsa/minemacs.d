@@ -31,10 +31,10 @@
 ;;
 
 (use-package evil-colemak-basics
-  :demand t
+  ;; :demand t
   :straight t
   :after evil
-  :config
+  :init
   (setq evil-colemak-basics-layout-mod `mod-dh)
   (global-evil-colemak-basics-mode))
 
@@ -57,12 +57,11 @@
 ;; Buit-in
 ;;
 
-;; IMO, modern editors have trained a bad habit into us all: a burning need for
-;; completion all the time -- as we type, as we breathe, as we pray to the
-;; ancient ones -- but how often do you *really* need that information? I say
-;; rarely. So opt for manual completion:
 (with-eval-after-load 'company
-  (setq company-idle-delay 0.5))
+  (setq company-idle-delay 1))
+
+(with-eval-after-load 'eldoc
+  (setq eldoc-idle-delay 3))
 
 (use-package abbrev
   :defer 1
@@ -81,6 +80,9 @@
 (+deferred!
  (display-battery-mode -1)
  (display-time-mode -1))
+
+(with-eval-after-load 'me-defaults
+  (setq display-line-numbers-type t))
 
 ;;
 ;; Bring back favorite Doom's behavior
@@ -103,8 +105,8 @@
 (use-package highlight-indent-guides
   :straight t
   :hook ((prog-mode text-mode conf-mode) . highlight-indent-guides-mode)
-  :init (setq highlight-indent-guides-method 'character)
   :config
+  (setq highlight-indent-guides-method 'character)
   ;; optional. I need it to be brighther
   (set-face-foreground 'highlight-indent-guides-character-face (face-foreground 'font-lock-comment-face)))
 
@@ -129,11 +131,11 @@
     ))
 
 ;; highlight yanked line
-(use-package evil-goggles
-  :straight t
-  :demand
-  :init
-  (evil-goggles-mode))
+;; (use-package evil-goggles
+;;   :straight t
+;;   :demand
+;;   :init
+;;   (evil-goggles-mode))
 
 ;;
 ;; Adopt MinEmacs default
@@ -151,6 +153,13 @@
 (setq shell-file-name "/bin/bash")
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
+
+(use-package exec-path-from-shell
+  :straight t
+  :demand t
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
 
 ;; It is the 21st century, should I save file manually?
 (use-package super-save
@@ -174,6 +183,7 @@
   :config
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
   (setq neo-smart-open t)
+  (setq neo-autorefresh t)
   ;;work with projectile
   (setq projectile-switch-project-action 'neotree-projectile-action)
   (setq neo-hidden-regexp-list
@@ -225,8 +235,6 @@
 (+deferred!
  ;; Auto enable Eglot in modes `+eglot-auto-enable-modes' using
  ;; `+eglot-auto-enable' (from the `me-prog' module). You can use
- ;; `+lsp-auto-enable' instead to automatically enable LSP mode in supported
- ;; modes (from the `me-lsp' module).
  (+eglot-auto-enable)
 
  (with-eval-after-load 'eglot
