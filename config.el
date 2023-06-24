@@ -31,9 +31,9 @@
 ;;
 
 (use-package evil-colemak-basics
-  ;; :demand t
+  :demand t
   :straight t
-  :after evil
+  ;; :after evil
   :init
   (setq evil-colemak-basics-layout-mod `mod-dh)
   (global-evil-colemak-basics-mode))
@@ -132,7 +132,7 @@
 (with-eval-after-load 'me-keybindings
   (+map!
     "SPC"  #'project-find-file
-    "x" #'+scratch-open-project-scratch-buffer
+    "w x" #'scratch-buffer!
     ))
 
 ;; highlight yanked line
@@ -300,3 +300,18 @@
   ;; `async-shell-command', and `shell-command'. But the (b)ash version works
   ;; out of the box. Including with `start-process'
   (call-process-shell-command (concat "termhere " (expand-file-name default-directory))))
+
+(defun scratch-buffer! ()
+  "Toggle persistent scratch buffer"
+  (interactive)
+  (let ((filename "~/.local/share/**scratch**.md"))
+    (if-let ((buffer (find-buffer-visiting filename)))
+        (if (eq (selected-window) (get-buffer-window buffer))
+            (delete-window)
+          (if (get-buffer-window buffer)
+              (select-window (get-buffer-window buffer))
+            (pop-to-buffer buffer)))
+      (progn
+        (split-window-vertically)
+        (other-window 1)
+        (find-file filename)))))
