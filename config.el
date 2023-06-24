@@ -135,11 +135,10 @@
     ))
 
 ;; highlight yanked line
-;; (use-package evil-goggles
-;;   :straight t
-;;   :demand
-;;   :init
-;;   (evil-goggles-mode))
+(use-package evil-goggles
+  :straight t
+  :init
+  (evil-goggles-mode))
 
 ;;
 ;; Adopt MinEmacs default
