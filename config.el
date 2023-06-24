@@ -93,15 +93,6 @@
 ;; Bring back favorite Doom's behavior
 ;;
 
-;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el
-(use-package drag-stuff
-  :straight t
-  :defer t
-  :bind (("<M-up>"   . 'drag-stuff-up)
-         ("<M-down>"  . 'drag-stuff-down)
-         ("<M-left>"  . 'drag-stuff-left)
-         ("<M-right>" . 'drag-stuff-right)))
-
 ;; auto comment next line
 ;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el#L3
 ;; I don't think it is possible. The code is too complex. It needs to know every possible language mode
