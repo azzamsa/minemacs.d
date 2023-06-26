@@ -33,4 +33,4 @@
         me-window))      ; Frame & window tweaks
 
 ;; You can set `minemacs-disabled-packages' to disable some packages.
-(push '(tempel-collection treemacs googles) minemacs-disabled-packages)
+(push '(tempel-collection treemacs googles eglot-ltex) minemacs-disabled-packages)
