@@ -239,6 +239,18 @@
   ;; to enable multi-language spell checking.
   (+spell-fu-register-dictionaries! "en" "id"))
 
+;; With default `rust-mode' or `rust-ts-mode' I need to setup `eglot-server-programs'
+;; to the location of ".local/share/rustup/toolchains/<target>/bin". It creates many more errors.
+;; Because we need to set every binary such as `cargo' to the same directory.
+;; I just went to `rustic-mode' and solves everytings.
+(use-package rustic
+  :straight t
+  :mode ("\\.rs$" . rustic-mode)
+  :config
+  (setq rustic-lsp-client 'eglot)
+  :custom
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
+
 (use-package just-mode :straight t :defer t)
 
 (use-package ron-mode
