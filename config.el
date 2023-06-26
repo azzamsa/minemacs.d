@@ -92,6 +92,14 @@
 ;;
 ;; Bring back favorite Doom's behavior
 ;;
+;; https://github.com/doomemacs/doomemacs/blob/master/modules/config/default/config.el
+(use-package drag-stuff
+  :straight t
+  :defer t
+  :bind (("<M-up>"   . 'drag-stuff-up)
+         ("<M-down>"  . 'drag-stuff-down)
+         ("<M-left>"  . 'drag-stuff-left)
+         ("<M-right>" . 'drag-stuff-right)))
 
 ;; https://github.com/doomemacs/doomemacs/blob/master/modules/ui/indent-guides/config.el
 (use-package highlight-indent-guides
