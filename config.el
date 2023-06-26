@@ -31,9 +31,9 @@
 ;;
 
 (use-package evil-colemak-basics
-  :demand t
   :straight t
-  ;; :after evil
+  :demand t
+  :after evil-collection
   :init
   (setq evil-colemak-basics-layout-mod `mod-dh)
   (global-evil-colemak-basics-mode))
@@ -149,7 +149,7 @@
 ;;
 
 ;; Emacs doesn't play well with fish
-(setq shell-file-name "/bin/bash")
+(setq shell-file-name "/bin/zsh")
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
 
@@ -237,6 +237,8 @@
  (+eglot-auto-enable)
 
  (with-eval-after-load 'eglot
+   (add-to-list 'eglot-server-programs '((rust-ts-mode rust-mode) . ("rustup" "run" "stable" "rust-analyzer")))
+
    ;; You can use this to fill `+eglot-auto-enable-modes' with all supported
    ;; modes from `eglot-server-programs'
    (+eglot-use-on-all-supported-modes eglot-server-programs)))
@@ -246,18 +248,6 @@
   ;; We can use MinEmacs' helper macro `+spell-fu-register-dictionaries!'
   ;; to enable multi-language spell checking.
   (+spell-fu-register-dictionaries! "en" "id"))
-
-;; With default `rust-mode' or `rust-ts-mode' I need to setup `eglot-server-programs'
-;; to the location of ".local/share/rustup/toolchains/<target>/bin". It creates many more errors.
-;; Because we need to set every binary such as `cargo' to the same directory.
-;; I just went to `rustic-mode' and solves everytings.
-(use-package rustic
-  :straight t
-  :mode ("\\.rs$" . rustic-mode)
-  :config
-  (setq rustic-lsp-client 'eglot)
-  :custom
-  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
 
 (use-package just-mode :straight t :defer t)
 
