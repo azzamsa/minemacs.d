@@ -43,7 +43,7 @@
 ;;
 
 ;;
-;; Why <current theme name>?
+;; Why current <theme name>?
 ;; 1.  `catpuccin-*' has so manny issue I need to fix myself
 ;; - [active region almost unnoticable · Issue #112 · catppuccin/emacs](https://github.com/catppuccin/emacs/issues/112)
 ;; - [No iedit faces specified (used by evil-multiedit) · Issue #108 · catppuccin/emacs](https://github.com/catppuccin/emacs/issues/108)
@@ -51,13 +51,14 @@
 ;; 2. `doom-palenight' too muted for me.
 ;; 2. `doom-material' has she same issue as catppuccin. The highlighted text is unnoticable.
 (setq minemacs-theme 'doom-dracula)
-;; Why <current font name>?
+;; Why current <font name>?
 ;; - `VictorMono Nerd Font' is too thin
+;; Why current <emoji font name>?
 (setq minemacs-fonts'(:font-family "Iosevka Nerd Font"
                                    :font-size 18
                                    :variable-pitch-font-family "Iosevka Nerd Font"
-                                   :variable-pitch-font-size 18))
-
+                                   :variable-pitch-font-size 18
+                                   :unicode-font-family "Twemoji"))
 ;;
 ;; Buit-in
 ;;
