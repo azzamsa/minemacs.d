@@ -49,7 +49,8 @@
 ;; - [No iedit faces specified (used by evil-multiedit) · Issue #108 · catppuccin/emacs](https://github.com/catppuccin/emacs/issues/108)
 ;; doesn't have noticeable region color during evil multi-cursor.
 ;; 2. `doom-palenight' too muted for me.
-;; 2. `doom-material' has she same issue as catppuccin. The highlighted text is unnoticable.
+;; 3. `doom-material' has she same issue as catppuccin. The highlighted text is unnoticable.
+;; 4. `doom-tokyo-night' has so many muted symbols. How could you mute a symbol?
 (setq minemacs-theme 'doom-dracula)
 ;; Why current <font name>?
 ;; - `VictorMono Nerd Font' is too thin
@@ -150,7 +151,7 @@
 ;;
 
 ;; Emacs doesn't play well with fish
-(setq shell-file-name "/bin/zsh")
+(setq shell-file-name "/usr/bin/zsh")
 
 (setq projectile-project-search-path '("~/projects" "~/office" "~/playground"))
 
