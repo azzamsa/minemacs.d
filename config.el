@@ -221,16 +221,11 @@
   (setq magit-diff-refine-hunk 'all)
   (setq magit-log-margin '(t "%Y-%m-%d %H:%M " magit-log-margin-width t 18)))
 
-(use-package web-mode
-  :defer t
-  :mode "\\.njk\\'")
-
-(use-package lsp-tailwindcss
+(use-package evil-surround
   :straight t
-  :after web-mode
+  :after evil-collection
   :config
-  ;; LSP-mode doesn't know what is njk producing `Unable to calculate the languageId for buffer …'
-  (add-to-list 'lsp-language-id-configuration '(".*\\.njk$" . "html")))
+  (global-evil-surround-mode 1))
 
  ;;; :tools lsp
 (+deferred!
